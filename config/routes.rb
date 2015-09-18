@@ -1,15 +1,12 @@
 Rails.application.routes.draw do
-  root 'dashbord#index'
 
   get :login, to: 'sessions#new'
   get :logout, to: 'sessions#destroy'
 
   resources :sessions, only: [:new, :create, :destroy]
 
-  resources :users, only: [:new, :create, :update, :destroy] do
-    resources :reg_forms, only: [:new, :create]
-  end
-
+  resources :users, only: [:new, :create, :update, :destroy]
+  resources :reg_forms, only: [:new, :create, :show]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
