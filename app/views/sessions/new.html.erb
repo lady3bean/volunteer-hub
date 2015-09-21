@@ -4,21 +4,15 @@
     <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 
-<%= form_for :login, { url: sessions_path } do |f| %>
+<%= form_tag login_path do |f| %>
   <p>
-    <%= f.label :username %>
-    <%= f.text_field :username %>
+    <%= email_field_tag :email, nil, placeholder: 'Email' %>
   </p>
   <p>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= password_field_tag :password, nil,  placeholder: 'Password' %>
   </p>
   <p>
-    <%= f.label :password_digest %>
-    <%= f.text_field :password_digest %>
-  </p>
-  <p>
-    <%= f.submit %>
+      <li><%= button_tag 'Login', class: 'login-button' %></li>
   </p>
 <% end %>
 

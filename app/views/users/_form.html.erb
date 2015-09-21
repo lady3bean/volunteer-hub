@@ -8,10 +8,11 @@
     <%= f.text_field :email %>
   </p>
   <p>
-    <%= f.label :password_digest %>
-    <%= f.text_field :password_digest %>
+    <%= f.password_field :password, placeholder: "Password" %></li>
+    <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %></li>
   </p>
   <p>
     <%= f.submit %>
   </p>
+<%= link_to 'Or log in', login_path %>
 <% end %>
