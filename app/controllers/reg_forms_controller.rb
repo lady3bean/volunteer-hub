@@ -3,6 +3,7 @@ class RegFormsController < ApplicationController
   
   def new
     @reg_form = RegForm.new
+    @reg_form.build_address
   end
 
   def show
@@ -14,14 +15,14 @@ class RegFormsController < ApplicationController
     @reg_form.user_id = current_user.id
 
     if @reg_form.save
-      render :new
+      redirect_to new_reg_form_path
     else
-      render :new
+      redirect_to new_reg_form_path, flash: { notice: 'Invalid data, please try again!' }
     end
   end
 
   private
   def reg_form_params
-    params.require(:reg_form).permit(:name, :email, :phone, :user_id)
+    params.require(:reg_form).permit(:name, :email, :phone, :user_id, :address)
   end
 end
