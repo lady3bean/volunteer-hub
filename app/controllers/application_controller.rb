@@ -11,6 +11,5 @@ class ApplicationController < ActionController::Base
 
   def authorize_user!
     redirect_to(login_path) && return unless current_user
-    redirect_to(users_waiting_path) && return unless current_user.approved
   end
 end
