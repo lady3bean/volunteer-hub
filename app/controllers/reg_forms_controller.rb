@@ -1,4 +1,6 @@
 class RegFormsController < ApplicationController
+  before_filter :authorize_user!
+  
   def new
     @reg_form = RegForm.new
   end
