@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
 
   get :login, to: 'sessions#new'
+  post :login, to: 'sessions#login'
   get :logout, to: 'sessions#destroy'
-
-  resources :sessions, only: [:new, :create, :destroy]
 
   resources :users, only: [:new, :create, :update, :destroy]
   resources :reg_forms, only: [:new, :create, :show]
