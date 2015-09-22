@@ -14,25 +14,24 @@ class FollowUpFormsController < ApplicationController
     post_to_bsd
     
     if @follow_up_form.save    
-      redirect_to controller: 'reg_forms', action: 'new'
+      redirect_to new_follow_up_form_path
     else
-      redirect_to controller: 'reg_forms', action: 'new'
+      redirect_to new_follow_up_form_path, flash: { notice: 'Invalid data, please try again!' }
     end
   end
 
   def post_to_bsd
     bsd_form_data = @follow_up_form.to_json
 
-    uri = URI.parse("https://go.berniesanders.com/page/sapi/tracing-test")
+    uri = URI.parse("https://go.berniesanders.com/page/s/tracing-test")
 
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE 
     request = Net::HTTP::Post.new(uri.request_uri)
-    request.set_form_data({ "query" => bsd_form_data })
-    byebug
+    request.set_form_data({ "q" => bsd_form_data })
     response = http.request(request)
-
+    byebug
     puts response
   end
 
