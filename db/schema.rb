@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922145449) do
+ActiveRecord::Schema.define(version: 20150922153509) do
 
   create_table "addresses", force: :cascade do |t|
     t.string  "line1"
@@ -33,7 +33,10 @@ ActiveRecord::Schema.define(version: 20150922145449) do
     t.boolean  "subscribe_to_sms"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "user_id"
   end
+
+  add_index "follow_up_forms", ["user_id"], name: "index_follow_up_forms_on_user_id"
 
   create_table "reg_forms", force: :cascade do |t|
     t.string   "name",       null: false
