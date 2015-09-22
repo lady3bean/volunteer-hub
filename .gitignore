@@ -16,5 +16,7 @@
 !/log/.keep
 /tmp
 
-/config/bluestatedigital.yml
-/config/secrets.yml
+config/bluestatedigital.yml
+config/secrets.yml
+config/env.yml
+
