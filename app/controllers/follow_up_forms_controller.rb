@@ -1,5 +1,6 @@
 class FollowUpFormsController < ApplicationController
   require "net/http"
+  require "uri"
 
   before_filter :authorize_user!
   
@@ -11,9 +12,9 @@ class FollowUpFormsController < ApplicationController
   def create
     @follow_up_form = FollowUpForm.new(follow_up_form_params)
     @follow_up_form.user_id = current_user.id
-    post_to_bsd
     
-    if @follow_up_form.save    
+    if @follow_up_form.save
+      post_to_bsd
       redirect_to new_follow_up_form_path
     else
       redirect_to new_follow_up_form_path, flash: { notice: 'Invalid data, please try again!' }
@@ -31,7 +32,6 @@ class FollowUpFormsController < ApplicationController
     request = Net::HTTP::Post.new(uri.request_uri)
     request.set_form_data({ "q" => bsd_form_data })
     response = http.request(request)
-    byebug
     puts response
   end
 
