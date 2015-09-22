@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922153509) do
+ActiveRecord::Schema.define(version: 20150922213329) do
 
   create_table "addresses", force: :cascade do |t|
     t.string  "line1"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150922153509) do
   add_index "addresses", ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id", unique: true
 
   create_table "follow_up_forms", force: :cascade do |t|
-    t.string   "name",              null: false
+    t.string   "firstname",         null: false
     t.string   "email",             null: false
     t.string   "phone"
     t.boolean  "want_to_volunteer"
@@ -34,17 +34,19 @@ ActiveRecord::Schema.define(version: 20150922153509) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "user_id"
+    t.string   "lastname"
   end
 
   add_index "follow_up_forms", ["user_id"], name: "index_follow_up_forms_on_user_id"
 
   create_table "reg_forms", force: :cascade do |t|
-    t.string   "name",       null: false
+    t.string   "firstname",  null: false
     t.string   "email",      null: false
     t.string   "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
+    t.string   "lastname"
   end
 
   add_index "reg_forms", ["user_id"], name: "index_reg_forms_on_user_id"
