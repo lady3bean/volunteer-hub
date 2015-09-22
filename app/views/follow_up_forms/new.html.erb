@@ -1,0 +1,32 @@
+<h2>Enter Information</h2>
+
+
+<%= form_for @follow_up_form do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </p>
+  <p>
+    <%= f.label :want_to_volunteer %>
+    <%= f.checkbox :want_to_volunteer %>
+  </p>
+  <p>
+    <%= f.label :subscribe_sms %>
+    <%= f.checkbox :subscribe_sms %>
+  </p> 
+  <%= f.fields_for :address do |address| %>
+    <%= render :partial => 'shared/address', :locals => {:f => address} %>
+  <% end %>
+   
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :update, :destroy]
   resources :reg_forms, only: [:new, :create, :show]
+  resources :follow_up_forms, only: [:new, :create, :show]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
