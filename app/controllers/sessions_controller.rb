@@ -1,8 +1,10 @@
 class SessionsController < ApplicationController
+
   def new
   end
 
   def login
+    reset_session
     user = User.where(email: params[:email]).first
     if user && user.authenticate(params[:password])
       redirect_to controller: 'reg_forms', action: 'new'

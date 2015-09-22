@@ -6,10 +6,6 @@ class RegFormsController < ApplicationController
     @reg_form.build_address
   end
 
-  def show
-    @reg_form = RegForm.find(params[:id])
-  end
-
   def create
     @reg_form = RegForm.new(reg_form_params)
     @reg_form.user_id = current_user.id
