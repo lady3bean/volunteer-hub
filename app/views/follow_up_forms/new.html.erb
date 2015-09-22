@@ -16,16 +16,18 @@
   </p>
   <p>
     <%= f.label :want_to_volunteer %>
-    <%= f.checkbox :want_to_volunteer %>
+    <%= f.check_box :want_to_volunteer %>
   </p>
   <p>
-    <%= f.label :subscribe_sms %>
-    <%= f.checkbox :subscribe_sms %>
+    <%= f.label :subscribe_to_sms %>
+    <%= f.check_box :subscribe_to_sms %>
   </p> 
-  <%= f.fields_for :address do |address| %>
-    <%= render :partial => 'shared/address', :locals => {:f => address} %>
-  <% end %>
-   
+  <p> 
+    <%= fields_for @follow_up_form.address do |f| %>
+      <%= f.label :zip %>
+      <%= f.text_field :zip %>
+    <% end %>
+  </p>
   <p>
     <%= f.submit 'Create' %>
   </p>
