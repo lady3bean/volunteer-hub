@@ -5,6 +5,7 @@ class RegForm < ActiveRecord::Base
   accepts_nested_attributes_for :address
 
   validates :email, uniqueness: true
-  validates :name, presence: true
+  validates :firstname, presence: true
+  validates :lastname, presence: true
   validates :phone, presence: true, uniqueness: true
 end

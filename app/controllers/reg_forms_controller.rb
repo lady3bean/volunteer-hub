@@ -19,6 +19,6 @@ class RegFormsController < ApplicationController
 
   private
   def reg_form_params
-    params.require(:reg_form).permit(:name, :email, :phone, :user_id, address_attributes: [:line1, :line2, :city, :state, :zip])
+    params.require(:reg_form).permit(:firstname, :lastname, :email, :phone, :user_id, address_attributes: [:line1, :line2, :city, :state, :zip])
   end
 end
