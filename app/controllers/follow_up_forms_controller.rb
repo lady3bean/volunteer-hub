@@ -12,9 +12,10 @@ class FollowUpFormsController < ApplicationController
   def create
     @follow_up_form = FollowUpForm.new(follow_up_form_params)
     @follow_up_form.user_id = current_user.id
+    uri = base_uri + 'tracing-test'
     
     if @follow_up_form.save
-      post_to_bsd(@follow_up_form)
+      post_to_bsd(@follow_up_form, uri)
       redirect_to new_follow_up_form_path
     else
       redirect_to new_follow_up_form_path, flash: { notice: 'Invalid data, please try again!' }
