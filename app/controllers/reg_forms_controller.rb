@@ -11,6 +11,7 @@ class RegFormsController < ApplicationController
     @reg_form.user_id = current_user.id
 
     if @reg_form.save
+      post_to_bsd(@reg_form)
       redirect_to new_reg_form_path
     else
       redirect_to new_reg_form_path, flash: { notice: 'Invalid data, please try again!' }
