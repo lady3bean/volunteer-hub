@@ -10,4 +10,15 @@ class ApplicationController < ActionController::Base
   def authorize_user!
     redirect_to(login_path) && return unless current_user
   end
+
+  def post_to_bsd(form_data)
+    bsd_form_data = form_data.to_json
+    uri = URI.parse("https://go.berniesanders.com/page/sapi/tracing-test")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    request = Net::HTTP::Post.new(uri.request_uri)
+    request.set_form_data({ "q" => bsd_form_data })
+    response = http.request(request)
+    puts response
+  end
 end
