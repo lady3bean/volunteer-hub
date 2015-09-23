@@ -15,7 +15,8 @@ class FollowUpFormsController < ApplicationController
     uri = base_uri + 'tracing-test'
        
     if @follow_up_form.save
-      post_to_bsd(@follow_up_form, uri)
+      form_data = @follow_up_form.as_json
+      post_to_bsd(form_data, uri)
       redirect_to new_follow_up_form_path
     else
       redirect_to new_follow_up_form_path, flash: { notice: 'Invalid data, please try again!' }
