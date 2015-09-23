@@ -12,7 +12,8 @@ class RegFormsController < ApplicationController
     uri = base_uri + 'validations-test'
 
     if @reg_form.save
-      post_to_bsd(@reg_form, uri)
+      form_data = @reg_form.as_json
+      post_to_bsd(form_data, uri)
       redirect_to new_reg_form_path
     else
       redirect_to new_reg_form_path, flash: { notice: 'Invalid data, please try again!' }

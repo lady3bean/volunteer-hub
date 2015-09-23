@@ -22,8 +22,15 @@ class ApplicationController < ActionController::Base
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     request = Net::HTTP::Post.new(uri.request_uri)
-    request.set_form_data( { "q" => form_data } )
-    response = http.request(request)
-    puts response
+    request.set_form_data(form_data)
+    
+    res = Net::HTTP.get_response(uri)
+    case res
+      when Net::HTTPSuccess, Net::HTTPRedirection
+        puts 'ok'
+      else
+        puts res.value
+    end
+
   end
 end
