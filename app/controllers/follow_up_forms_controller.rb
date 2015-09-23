@@ -13,9 +13,7 @@ class FollowUpFormsController < ApplicationController
     @follow_up_form = FollowUpForm.new(follow_up_form_params)
     @follow_up_form.user_id = current_user.id
     uri = base_uri + 'tracing-test'
-    @follow_up_form.volunteer_email = current_user.email
-    byebug
-    
+       
     if @follow_up_form.save
       post_to_bsd(@follow_up_form, uri)
       redirect_to new_follow_up_form_path
