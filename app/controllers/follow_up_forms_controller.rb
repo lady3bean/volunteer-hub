@@ -13,7 +13,7 @@ class FollowUpFormsController < ApplicationController
     @follow_up_form = FollowUpForm.new(follow_up_form_params)
     @follow_up_form.user_id = current_user.id
     uri = base_uri + 'tracing-test'
-    
+       
     if @follow_up_form.save
       post_to_bsd(@follow_up_form, uri)
       redirect_to new_follow_up_form_path
@@ -24,6 +24,6 @@ class FollowUpFormsController < ApplicationController
 
   private
   def follow_up_form_params
-    params.require(:follow_up_form).permit(:firstname, :lastname, :email, :phone, :user_id, :want_to_volunteer, :subscribe_to_sms, address_attributes: [:zip])
+    params.require(:follow_up_form).permit(:firstname, :lastname, :email, :phone, :user_id, :want_to_volunteer, :subscribe_to_sms, :volunteer_email, address_attributes: [:zip])
   end
 end

@@ -16,11 +16,13 @@ class ApplicationController < ActionController::Base
   end
 
   def post_to_bsd(form_data, uri)
+    form_data.volunteer_email = current_user.email
     bsd_form_data = form_data.to_json
+
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     request = Net::HTTP::Post.new(uri.request_uri)
-    request.set_form_data({ "q" => bsd_form_data })
+    request.set_form_data( { "q" => bsd_form_data } )
     response = http.request(request)
     puts response
   end
