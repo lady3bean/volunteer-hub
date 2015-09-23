@@ -24,6 +24,6 @@ class FollowUpFormsController < ApplicationController
 
   private
   def follow_up_form_params
-    params.require(:follow_up_form).permit(:firstname, :lastname, :email, :phone, :user_id, :want_to_volunteer, :subscribe_to_sms, :volunteer_email, address_attributes: [:zip])
+    params.require(:follow_up_form).permit(:firstname, :lastname, :email, :phone, :user_id, :want_to_volunteer, :subscribe_to_sms, address_attributes: [:zip])
   end
 end

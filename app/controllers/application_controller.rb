@@ -16,7 +16,6 @@ class ApplicationController < ActionController::Base
   end
 
   def post_to_bsd(form_data, uri)
-    form_data.volunteer_email = current_user.email
     bsd_form_data = form_data.to_json
 
     http = Net::HTTP.new(uri.host, uri.port)
