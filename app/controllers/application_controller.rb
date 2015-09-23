@@ -22,8 +22,20 @@ class ApplicationController < ActionController::Base
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     request = Net::HTTP::Post.new(uri.request_uri)
-    request.set_form_data( { "q" => form_data } )
-    response = http.request(request)
-    puts response
+    request.set_form_data(form_data)
+    res = Net::HTTP.get_response(uri)
+    res['Set-Cookie']            # => String
+    res.get_fields('set-cookie') # => Array
+    res.to_hash['set-cookie']    # => Array
+    puts "Headers: #{res.to_hash.inspect}"
+
+    # Status
+    puts res.code
+    puts res.message
+    puts res.class.name
+
+    # Body
+    # puts res.body
+
   end
 end
