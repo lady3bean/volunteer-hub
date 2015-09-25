@@ -11,26 +11,4 @@ class ApplicationController < ActionController::Base
     redirect_to(login_path) && return unless current_user
   end
 
-  def base_uri
-    base_uri = URI.parse('https://go.berniesanders.com/page/sapi/')
-  end
-
-  def post_to_bsd(form_data, uri)
-    form_data['custom-2392'] = current_user.email
-    puts form_data
-
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    request = Net::HTTP::Post.new(uri.request_uri)
-    request.set_form_data(form_data)
-    
-    res = Net::HTTP.get_response(uri)
-    case res
-      when Net::HTTPSuccess, Net::HTTPRedirection
-        puts 'ok'
-      else
-        puts res.value
-    end
-
-  end
 end
