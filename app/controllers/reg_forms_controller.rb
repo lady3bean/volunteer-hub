@@ -9,11 +9,8 @@ class RegFormsController < ApplicationController
   def create
     @reg_form = RegForm.new(reg_form_params)
     @reg_form.user_id = current_user.id
-    uri = base_uri + 'validations-test'
 
     if @reg_form.save
-      form_data = @reg_form.as_json
-      post_to_bsd(form_data, uri)
       redirect_to new_reg_form_path
     else
       redirect_to new_reg_form_path, flash: { notice: 'Invalid data, please try again!' }
